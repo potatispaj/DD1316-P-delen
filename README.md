@@ -15,6 +15,10 @@ Osquldas plan om en trevlig tjejmiddag gick i stöpet då hon insåg att hon int
 ##Kodskelett
 ```
 class spel(object):
-  """Hela spelet utgår från huvudklassen spel."""
-  def enSpelare
+    """Hela spelet utgår från huvudklassen spel."""
+    def enSpelare
 ```
+
+##Programflöde
+
+Programmet börjar med att 
