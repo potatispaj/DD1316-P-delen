@@ -21,4 +21,7 @@ class spel(object):
 
 ##Programflöde
 
-Programmet börjar med att 
+Programmet börjar med att ett objekt av antingen underklassen **enspelarläge** eller **flerspelarläge** skapas beroende på hur många det är som önskar spela spelet. Därefter anropas metoden skapaSpelplan som tillhör överklassen **spel**
+
+
+
