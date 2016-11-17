@@ -19,11 +19,11 @@ Osquldas plan om en trevlig tjejmiddag gick i stöpet då hon insåg att hon int
 spelarLista[] #varje element i denna lista är ett objekt av typen spelare
 levandeSpelare[] #Initiellt en kopia av spelarLista, men elementen plockas bort allt eftersom spelarna dör
 
-class spelKlass(object):
+class spel(object):
     #En klass med metoder för en- och flerspelarläge   
     def initialisering(antalSpelare, storlekSpelplan)
         """Ritar upp spelplanen utifrån värdet på parametern storlekSpelplan.
-        Varje ruta på spelplanen lagras som ett objekt av ruta-klassen.
+        Spelplanen lagras som en matris med ruta-element
         Skapar lika många spelare-objekt som parametern antalSpelare anger.
     def ritaOrm(spelare, tillväxt):
         """Uppdaterar den aktuella spelarens orm på spelfältet."""
@@ -80,6 +80,6 @@ class ruta(object):
 
 ##Programflöde
 
-Programmet börjar med att ett objekt av en av klasserna **enspelarläge** eller **flerspelarläge** skapas beroende på hur många det är som önskar spela spelet. Det första som händer därefter är att metoden *initialisering* som tillhör överklassen **spelKlass** anropas. Denna skapar först ett objekt av klassen **spelare** för varje mänsklig spelare och ritar därefter upp spelplanen med den storlek som anges i en separat fil. Med hjälp av metoden *ritaOrm*, som anropas en gång per spelare (inklusive datorn), placeras alla spelares nykläckta små ormar slumpmässigt ut på spelplanen.
+Först och främst skapas ett objekt av klassen **spel**. Därefter anropas metoden *initialisering* (använd **__init__** istället?) Denna ritar först upp spelplanen med den storlek som anges i en separat fil. Spelplanen lagras som en matris. Därefter skapas ett objekt av klassen **spelare** för varje mänsklig spelare. Med hjälp av metoden *ritaOrm*, som anropas en gång per spelare (inklusive datorn), placeras alla spelares nykläckta små ormar slumpmässigt ut på spelplanen.
 
 Nu kan själva spelet börja. En loop går igenom alla spelare i tur och ordning och slumpar för varje spelare fram en matranson, låter spelaren välja åt vilket håll denne vill röra sig samt anropar metoden *ritaOrm* som uppdaterar spelplanen. Ifall det är endast en spelare som spelar anropas en annan metod varannan gång vilken ser till att "datorn" gör ett drag. Loopen bryts när endast en spelare är kvar vid liv. Spelet notifierar då användaren om vem som har vunnit spelet och en fråga ställs om användaren vill börja om spelet eller avsluta. 
