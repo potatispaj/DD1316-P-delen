@@ -18,6 +18,7 @@ Osquldas plan om en trevlig tjejmiddag gick i stöpet då hon insåg att hon int
 ```
 spelarLista[] #varje element i denna lista är ett objekt av typen spelare
 levandeSpelare[] #Initiellt en kopia av spelarLista, men elementen plockas bort allt eftersom spelarna dör
+lagra använda/oanvända rutor i en matris med samma storlek som spelplanen?
 
 class spel(object):
     #En klass med metoder för en- och flerspelarläge   
