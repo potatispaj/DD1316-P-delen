@@ -14,41 +14,69 @@ Osquldas plan om en trevlig tjejmiddag gick i stöpet då hon insåg att hon int
 
 ##Kodskelett
 ```
-spelareLista[]
-upptagnaPlatser[]
+spelarLista[] #varje element i denna lista är ett objekt av typen spelare
+levandeSpelare[] #Initiellt en kopia av spelarLista, men elementen plockas bort allt eftersom spelarna dör
 
 class spelKlass(object):
-    """En huvudklass som innehåller de metoder som är gemensamma för både en- och flerspelarläge."""    
+    #En klass med metoder för en- och flerspelarläge   
     def initialisering(antalSpelare, storlekSpelplan)
-        """Ritar upp spelplanen utifrån värdet på storlekSpelplan.
+        """Ritar upp spelplanen utifrån värdet på parametern storlekSpelplan.
+        Varje ruta på spelplanen lagras som ett objekt av ruta-klassen.
         Skapar lika många spelare-objekt som parametern antalSpelare anger.
-        Placerar också ut spelare-objekten på spelplanen med hjälp av metoden ritaOrm."""
     def ritaOrm(spelare, tillväxt):
         """Uppdaterar den aktuella spelarens orm på spelfältet."""
-    def kontrolleraDrag(spelare, tillväxt):
-        """Ser till att spelaren endast kan göra giltiga drag.
-        Om ogiltigt drag upptäcks uppmanas användaren röra sig åt annat håll.
-        Om förflyttning ej är möjlig raproterar metoden att spelaren har förlorat.
+    def kontrolleraTillväxt(spelare, tillväxt, riktning = 0):
+        """Ser till att önskat drag är tillåtet
+        Kontrollerar ruta.ledig för den ruta som användaren vill gå till.
+        Om ingen riktning matas in, alltså riktning = 0, kollar metoden
+        om spelaren kan gå åt något håll över huvud taget.
+        Returnerar True eller False"""
+        
+    def enspelarläge():
+        """Slumpar ut spelarnas ormar och ritar upp dessa med hjälp av metoden ritaOrm.
+        Därefter kommer en whileloop som loopar tills någon vinner.
+            I början av varje iteration kontrolleras längden på listan levandeSpelare[].
+            Om längden är 1 har någon vunnit och loopen avbryts. 
+            Annars tar spelaren och datorn turer om att göra sina drag.
+            För spelarens drag anropas tur(spelare)
+            Sedan gör datorn sitt drag."""
+        
+    def flerspelarläge():
+        """Slumpar ut spelarnas ormar och ritar upp dessa med hjälp av metoden ritaOrm.
+        Därefter kommer en whileloop som loopar tills någon vinner.
+            I början av varje iteration kontrolleras längden på listan levandeSpelare[].
+            Om längden är 1 har någon vunnit och loopen avbryts. 
+            Annars tar de levande spelarna turer om att göra sina drag. 
+            Metoden tur(spelare) anropas för varje person"""
+        
+    def tur(spelare):
+        """Kollar, med hjälp av metoden kontrolleraTillväxt, om spelaren kan göra ett drag. 
+        False --> Förlust, True --> Fortsätt
+        Slumpar en matranson.
+        Frågar åt vilket håll spelaren önskar gå.
+        Anropar kontrolleraTillväxt. Om draget slutar i en katastrof "dör" spelaren.
+        Efter genomfört drag anropas ritaOrm för att uppdatera grafiken.
+        returnerar true eller false beroende på om spelarens orm avled eller inte"""
+        
+    def datorTur()
+        """Algoritm för datorns drag.
+        Grafiken uppdateras med ritaOrm
+        Returnerar True eller False beroende på om datorn överlevde sitt drag."""
 
 class spelare(object):
-    """Varje mänsklig spelare blir tilldelad ett spelare-objekt.
-    Varje spelare-objekt besitter instansvariabler som anger spelarens namn, färg, längd, samt position"""
-        
-class enspelarläge(spelKlass):
-    """En underklass till spelKlass som innehåller metoder anpassade för spel där en spelare utmanar datorn."""
-    def spel():
-        """Loopar tills någon vinner, spelaren och datorn tar turer om att göra sina drag.
-        Efter någon har gjort sitt drag anropas ritaOrm för att uppdatera grafiken."""
-    
-class flerspelarläge(spelKlass):
-    """En underklass till spelKlass som innehåller metoder anpassade
-    för spel därflera mänskliga spelare spelar mot varandra"""    
-    def spel():
-        """Loopar tills någon vinner, spelarna tar turer om att göra sina drag.
-        Efter någon har gjort sitt drag anropas ritaOrm för att uppdatera grafiken."""
+    """Varje spelare blir tilldelad ett spelare-objekt.
+    Varje spelare-objekt har ett namn, färg, längd, status, mänsklig, samt
+    position (vilket är platsen för ormens huvud, som ett ruta-objekt)"""
 
+class ruta(object):
+    def __init__(self, x, y):  #Varje ruta på spelplanen lagras som ett klassobjekt
+        self.x = x
+        self.y = y
+        self.ledig = True
 ```
 
 ##Programflöde
 
-Programmet börjar med att ett objekt av en av klasserna **enspelarläge** eller **flerspelarläge** skapas beroende på hur många det är som önskar spela spelet. Det första som händer därefter är att metoden *initialisering* som tillhör överklassen **spelKlass** anropas. Denna skapar först ett objekt av klassen **spelare** för varje mänsklig spelare och ritar därefter upp spelplanen med den storlek som anges i en separat fil. Med hjälp av metoden *ritaOrm*, som anropas en gång per spelare (inklusive datorn), placeras alla spelares nykläckta små ormar slumpmässigt ut på spelplanen. Nu kan själva spelet börja. En loop går igenom alla spelare i tur och ordning och slumpar för varje spelare fram en matranson, låter spelaren välja åt vilket håll denne vill röra sig samt anropar metoden *ritaOrm* som uppdaterar spelplanen. Ifall det är endast en spelare som spelar anropas en annan metod varannan gång vilken ser till att "datorn" gör ett drag. Loopen bryts när endast en spelare är kvar vid liv. Spelet notifierar då användaren om vem som har vunnit spelet och en fråga ställs om användaren vill börja om spelet eller avsluta. 
+Programmet börjar med att ett objekt av en av klasserna **enspelarläge** eller **flerspelarläge** skapas beroende på hur många det är som önskar spela spelet. Det första som händer därefter är att metoden *initialisering* som tillhör överklassen **spelKlass** anropas. Denna skapar först ett objekt av klassen **spelare** för varje mänsklig spelare och ritar därefter upp spelplanen med den storlek som anges i en separat fil. Med hjälp av metoden *ritaOrm*, som anropas en gång per spelare (inklusive datorn), placeras alla spelares nykläckta små ormar slumpmässigt ut på spelplanen.
+
+Nu kan själva spelet börja. En loop går igenom alla spelare i tur och ordning och slumpar för varje spelare fram en matranson, låter spelaren välja åt vilket håll denne vill röra sig samt anropar metoden *ritaOrm* som uppdaterar spelplanen. Ifall det är endast en spelare som spelar anropas en annan metod varannan gång vilken ser till att "datorn" gör ett drag. Loopen bryts när endast en spelare är kvar vid liv. Spelet notifierar då användaren om vem som har vunnit spelet och en fråga ställs om användaren vill börja om spelet eller avsluta. 
