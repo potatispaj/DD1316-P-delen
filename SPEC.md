@@ -49,7 +49,8 @@ class spelKlass(object):
             I början av varje iteration kontrolleras längden på listan levandeSpelare[].
             Om längden är 1 har någon vunnit och loopen avbryts. 
             Annars tar de levande spelarna turer om att göra sina drag. 
-            Metoden tur(spelare) anropas för varje person"""
+            Metoden tur(spelare) anropas för varje person
+            Om tur returnerar false tas spelaren bort från listan levandeSpelare[]"""
         
     def tur(spelare):
         """Kollar, med hjälp av metoden kontrolleraTillväxt, om spelaren kan göra ett drag. 
