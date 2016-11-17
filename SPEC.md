@@ -2,7 +2,9 @@
 #Specifikation
 
 ##Inledning
-Jag har tänkt programmera ett enkelt datorspel som kan liknas med en variant av det klassiska ”Snake”. Flera spelare ska kunna spela spelet mot varandra men för den som inga kompisar har ska det även finnas ett enspelarläge där man utmanar datorn. Spelarnas huggormar placeras slumpmässigt ut på spelplanen och tar därefter turer om att bli tilldelade en slumpartad matranson på en, två, eller tre grodlår och spelaren får därefter välja åt vilket håll dennes huggorm skall växa (ett steg per grodlår). Förlorar gör man om man går in med sin orm i någon annans orm, alternativt om man inte har möjlighet att växa åt något håll. 
+Jag har tänkt programmera ett enkelt datorspel som kan liknas med en variant av det klassiska ”Snake”. Flera spelare ska kunna spela spelet mot varandra men för den som inga kompisar har ska det även finnas ett enspelarläge där man utmanar datorn. Spelarnas huggormar placeras slumpmässigt ut på spelplanen och tar därefter turer om att bli tilldelade en slumpartad matranson på en, två, eller tre grodlår och spelaren får därefter välja åt vilket håll dennes huggorm skall växa (ett steg per grodlår). 
+
+Förlorar gör man om man går in med sin orm i någon annans orm, alternativt om man inte har möjlighet att växa åt något håll. 
 För att detta relativt enkla men hysteriskt roliga spel ska bli till verklighet måste en del utmaningar överkommas. Det kan bli knepigt att få det grafiska gränssnittet att se riktigt bra ut men den största svårigheten kommer troligtvis ligga i att få spelet att vara anpassningsbart för att kunna tillfredsställa även de största kompisgäng. Fokus måste därmed hållas stenhård på att alla programmets komponenter är dynamiska och fungerar oberoende av antalet spelare som kan tänkas vilja vara med på det roliga.
 
 ##Användarscenarier
