@@ -26,7 +26,7 @@ class spel(object):
         """Ritar upp spelplanen utifrån värdet på parametern storlekSpelplan.
         Spelplanen lagras som en matris med ruta-element
         Skapar lika många spelare-objekt som parametern antalSpelare anger.
-    def ritaOrm(spelare, tillväxt):
+    def ritaOrm(spelare, tillväxt, riktning):
         """Uppdaterar den aktuella spelarens orm på spelfältet."""
     def kontrolleraTillväxt(spelare, tillväxt, riktning = 0):
         """Ser till att önskat drag är tillåtet
